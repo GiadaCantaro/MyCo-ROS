@@ -122,7 +122,7 @@ int main(int argc, char** argv)
     }
 
     moveit::planning_interface::MoveGroupInterface::Plan plan;
-    plan.trajectory_ = trajectory;
+    plan.trajectory = trajectory;
 
     const auto result = move_group.execute(plan);
     if (result != moveit::core::MoveItErrorCode::SUCCESS) {

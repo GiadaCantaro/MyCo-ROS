@@ -203,7 +203,7 @@ void MycoMotionAPI::cartPathGoalCB(const geometry_msgs::msg::PoseArray::SharedPt
     {
         RCLCPP_INFO(motion_nh_->get_logger(),"the cartesian path can be %.2f%% acheived", fraction * 100.0);
         trajectoryScaling(cart_path, velocity_scaling_);
-        cart_plan.trajectory_=cart_path;
+        cart_plan.trajectory = cart_path;
         group_->execute(cart_plan);//asyncExecute
     }
     else
