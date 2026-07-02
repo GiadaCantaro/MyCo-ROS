@@ -7,14 +7,15 @@ planning_scene_monitor_options:
   monitored_planning_scene_topic: "/moveit_cpp/monitored_planning_scene"
   wait_for_initial_state_timeout: 10.0
 
+# 1. ABILITIAMO SIA OMPL CHE PILZ NELLE PIPELINE
 planning_pipelines:
-  pipeline_names: ["ompl"]
+  pipeline_names: ["ompl", "pilz_industrial_motion_planner"]
 
 # --- PARAMETRI DI GESTIONE TRAIETTORIA ED ESECUZIONE ---
 trajectory_execution:
   allowed_execution_duration_scaling: 2.0
   allowed_goal_duration_margin: 0.5
-  allowed_start_tolerance: 10.0 # Ampia tolleranza come impostato nel nodo Python
+  allowed_start_tolerance: 0.0
   trajectory_duration_monitoring: true
 
 moveit_managed_controllers:
@@ -35,21 +36,22 @@ myco_arm_controller:
     - myco_joint5
     - myco_joint6
 
-# --- PARAMETRI DI PIANIFICAZIONE ---
-# Parametri globali di fallback
-plan_request_params:
-  planning_attempts: 1
-  planning_pipeline: ompl
-  planner_id: "RRTConnectkConfigDefault"
-  max_velocity_scaling_factor: 1.0
-  max_acceleration_scaling_factor: 1.0
+# --- CONFIGURAZIONE SPECIFICA DI PILZ ---
+pilz_industrial_motion_planner:
+  plan_request_params:
+    planning_attempts: 1
+    planning_pipeline: pilz_industrial_motion_planner
+    planner_id: "PTP"
+    max_velocity_scaling_factor: 0.8       # Alziamo un po' la velocità (80%)
+    max_acceleration_scaling_factor: 0.8   # Alziamo l'accelerazione (80%)
 
-# Configurazione specifica per il tuo braccio
+# --- PARAMETRI DI PIANIFICAZIONE DI DEFAULT PER IL BRACCIO ---
+# Impostiamo Pilz PTP come preferito per avere movimenti fluidi e istantanei
 myco_arm:
   plan_request_params:
-    planning_attempts: 10                    
-    planning_pipeline: ompl
-    planner_id: "RRTstarkConfigDefault"      
-    planning_time: 3.0                       
-    max_velocity_scaling_factor: 1.0
-    max_acceleration_scaling_factor: 1.0
+    planning_attempts: 1
+    planning_pipeline: pilz_industrial_motion_planner
+    planner_id: "PTP" 
+    planning_time: 0.1                     # Pilz calcola in meno di 100ms, non gli servono 3 secondi!
+    max_velocity_scaling_factor: 0.8
+    max_acceleration_scaling_factor: 0.8

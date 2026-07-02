@@ -3,7 +3,7 @@
 initial_positions:
   myco_joint1: 0
   myco_joint2: 0
-  myco_joint3: 0
+  myco_joint3: -1.5708
   myco_joint4: 0
-  myco_joint5: 0
+  myco_joint5: -1.5708
   myco_joint6: 0
