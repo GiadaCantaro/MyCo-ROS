@@ -1,0 +1,26 @@
+controller_manager:
+  ros__parameters:
+    use_sim_time: true
+    update_rate: 60
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    myco_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+myco_arm_controller:
+  ros__parameters:
+    use_sim_time: true
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    joints:
+      - myco_joint1
+      - myco_joint2
+      - myco_joint3
+      - myco_joint4
+      - myco_joint5
+      - myco_joint6

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="MyCo-10-1.00">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <xacro:include filename="/home/comau/Documents/Giada_Cantaro/a_isaac_gemini/racer5-giada/MyCo-ROS2/myco_10_1000mm/myco_10_1000mm_ros2_gazebo/urdf/myco_10_isaac.urdf" />
+
+    <xacro:include filename="MyCo-10-1.00.ros2_control.xacro" />
+
+    <xacro:MyCo-10-1_00_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+</robot>

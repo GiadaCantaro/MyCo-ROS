@@ -1,0 +1,55 @@
+planning_scene_monitor_options:
+  name: "planning_scene_monitor"
+  robot_description: "robot_description"
+  joint_state_topic: "/joint_states"
+  attached_collision_object_topic: "/moveit_cpp/planning_scene_monitor"
+  publish_planning_scene_topic: "/moveit_cpp/publish_planning_scene"
+  monitored_planning_scene_topic: "/moveit_cpp/monitored_planning_scene"
+  wait_for_initial_state_timeout: 10.0
+
+planning_pipelines:
+  pipeline_names: ["ompl"]
+
+# --- PARAMETRI DI GESTIONE TRAIETTORIA ED ESECUZIONE ---
+trajectory_execution:
+  allowed_execution_duration_scaling: 2.0
+  allowed_goal_duration_margin: 0.5
+  allowed_start_tolerance: 10.0 # Ampia tolleranza come impostato nel nodo Python
+  trajectory_duration_monitoring: true
+
+moveit_managed_controllers:
+  - myco_arm_controller
+
+controller_names:
+  - myco_arm_controller
+
+myco_arm_controller:
+  action_ns: follow_joint_trajectory
+  type: FollowJointTrajectory
+  default: true
+  joints:
+    - myco_joint1
+    - myco_joint2
+    - myco_joint3
+    - myco_joint4
+    - myco_joint5
+    - myco_joint6
+
+# --- PARAMETRI DI PIANIFICAZIONE ---
+# Parametri globali di fallback
+plan_request_params:
+  planning_attempts: 1
+  planning_pipeline: ompl
+  planner_id: "RRTConnectkConfigDefault"
+  max_velocity_scaling_factor: 1.0
+  max_acceleration_scaling_factor: 1.0
+
+# Configurazione specifica per il tuo braccio
+myco_arm:
+  plan_request_params:
+    planning_attempts: 10                    
+    planning_pipeline: ompl
+    planner_id: "RRTstarkConfigDefault"      
+    planning_time: 3.0                       
+    max_velocity_scaling_factor: 1.0
+    max_acceleration_scaling_factor: 1.0
