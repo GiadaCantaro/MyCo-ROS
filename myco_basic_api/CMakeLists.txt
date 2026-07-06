@@ -93,4 +93,11 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(PROGRAMS
+  scripts/myco_gui.py
+  # Se in futuro farai altre GUI, ti basterà aggiungere il percorso qui sotto, es:
+  # scripts/altra_gui.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_package()

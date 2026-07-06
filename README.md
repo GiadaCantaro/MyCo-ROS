@@ -99,7 +99,7 @@ Bring up the hardware of Myco. Before bringing up the hardware, you should setup
 
 ```sh
 $ sudo chrt 10 bash
-$ ros2 launch myco_3_5_950mm_ros2_moveit2 myco_3_5_950mm_moveit.launch.py 
+$ ros2 launch myco_10_1000mm_ros2_moveit2 myco_10_1000mm.launch.py
 ```
 
 Start up RViz with a configuration including the MoveIt! Motion Planning plugin:
@@ -110,7 +110,7 @@ $ ros2 launch myco_3_5_950mm_ros2_moveit2 myco_3_5_950mm_moveit_rviz.launch.py
 Start up myco basic api:
 ```sh
 $ sudo su
-$ ros2 launch myco_3_5_950mm_ros2_moveit2 myco_3_5_950mm_basic_api.launch.py
+$ ros2 launch myco_10_1000mm_ros2_moveit2 myco_10_1000mm_basic_api.launch.py 
 ```
 Start up "Myco Control Panel" interface:
 ```sh

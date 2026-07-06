@@ -1,6 +1,6 @@
 /**:
     ros__parameters:
-        myco_ethernet_name: ens33
+        myco_ethernet_name: enp4s0f1 #ens33
         slave_no: [2, 3, 4]
         joint_names: [myco_joint2, myco_joint1, myco_joint3, myco_joint4, myco_joint5, myco_joint6]
         reduction_ratios: [121.0, 121.0, 121.0, 121.0, 101.0, 101.0]

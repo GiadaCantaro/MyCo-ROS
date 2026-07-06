@@ -712,12 +712,19 @@ class MyFrame(wx.Frame,Node):
         t.start()
         
     def show_dialog(self):
-        self.dlg.SetPosition((self.GetPosition()[0]+250,
-                              self.GetPosition()[1]+250))
-        self.dlg.ShowModal()
+        try:
+            if not self.dlg.IsModal():
+                self.dlg.SetPosition((self.GetPosition()[0]+250,
+                                      self.GetPosition()[1]+250))
+                self.dlg.ShowModal()
+        except Exception:
+            pass
         
     def destroy_dialog(self):
-        self.dlg.EndModal(0)
+        try:
+            self.dlg.EndModal(0)
+        except Exception:
+            pass
         
     def closewindow(self,event):
         pass
@@ -893,7 +900,7 @@ class MyFrame(wx.Frame,Node):
         self.myco_gui_executor.add_node(self.gui_node)
         self.myco_gui_executor.add_node(self.node)
         spin_thread = threading.Thread(target=self.myco_gui_executor.spin)
-        spin_thread.setDaemon(True)
+        spin_thread.daemon = True
         spin_thread.start()
   
 if __name__=='__main__':  
