@@ -9,9 +9,10 @@ response_adapters:
   - default_planning_response_adapters/AddTimeOptimalParameterization
   - default_planning_response_adapters/ValidateSolution
   - default_planning_response_adapters/DisplayMotionPath
-  
+
+default_workspace_bounds: 1.5
 start_state_max_bounds_error: 0.1
-start_state_max_bounds_error: 0.1
+
 planner_configs:
   SBLkConfigDefault:
     type: geometric::SBL
